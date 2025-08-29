@@ -5,12 +5,12 @@ from agents import MasterAgent
 st.set_page_config(page_title="Multi-Agent Chat", page_icon="🤖", layout="centered")
 
 # --- Load secrets safely ---
+# Replace your secret loading code with this:
 try:
-    HF_TOKEN = st.secrets.get("HF_TOKEN") or os.getenv("HF_TOKEN")
-    GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
-    TOMORROW_API_KEY = st.secrets.get("TOMORROW_API_KEY") or os.getenv("TOMORROW_API_KEY")
+    HF_TOKEN = st.secrets["HF_TOKEN"] if "HF_TOKEN" in st.secrets else os.getenv("HF_TOKEN")
+    GROQ_API_KEY = st.secrets["GROQ_API_KEY"] if "GROQ_API_KEY" in st.secrets else os.getenv("GROQ_API_KEY")
+    TOMORROW_API_KEY = st.secrets["TOMORROW_API_KEY"] if "TOMORROW_API_KEY" in st.secrets else os.getenv("TOMORROW_API_KEY")
 except Exception:
-    # Fallback to environment variables if secrets.toml is not found
     HF_TOKEN = os.getenv("HF_TOKEN")
     GROQ_API_KEY = os.getenv("GROQ_API_KEY")
     TOMORROW_API_KEY = os.getenv("TOMORROW_API_KEY")
